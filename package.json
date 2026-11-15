@@ -1,0 +1,24 @@
+{
+  "name": "notes-api-2324802010260",
+  "version": "1.0.0",
+  "description": "Cloud Computing Lab - TDMU_PAK",
+  "main": "index.js",
+"scripts": {
+  "start": "node src/server.js",
+  "test": "node --test"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pak2k5/notes-api-2324802010260.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pak2k5/notes-api-2324802010260/issues"
+  },
+  "homepage": "https://github.com/Pak2k5/notes-api-2324802010260#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}

@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 1 - Hello Cloud API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #222;
+    }
+    h1, h2 { color: #174477; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #eaf2fb; }
+    tr:nth-child(even) { background: #f8fafc; }
+    .info {
+      background: #f4f7fb;
+      padding: 16px;
+      border-radius: 6px;
+    }
+    li { margin-bottom: 12px; }
+    a { color: #175caa; }
+  </style>
+</head>
+<body>
+
+  <h1>LAB 1 - LẬP TRÌNH TRÊN MÁY ẢO ĐÁM MÂY ĐẦU TIÊN</h1>
+
+  <div class="info">
+    <p><strong>Họ tên:</strong> Phan Anh Khoa</p>
+    <p><strong>MSSV:</strong> 2324802010260</p>
+    <p><strong>GitHub:</strong> Pak2k5</p>
+    <p><strong>Ngày thực hiện:</strong> 05/11/2026</p>
+  </div>
+
+  <h2>1. So sánh máy cá nhân và GitHub Codespaces</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tiêu chí</th>
+        <th>Máy cá nhân</th>
+        <th>Codespace</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Thời gian từ lúc bắt đầu đến khi chạy được node -v</td>
+        <td>Chưa ghi nhận</td>
+        <td>
+          Đã đo khoảng 506 giây đến khi Terminal khả dụng;
+          chưa đo riêng đến khi chạy được node -v.
+        </td>
+      </tr>
+      <tr>
+        <td>Số CPU, RAM</td>
+        <td>
+          Intel Core i5-12450H, 8 lõi, 12 luồng;
+          RAM 16 GB. Hệ thống sử dụng được khoảng 15,4 GB.
+        </td>
+        <td>
+          API ghi nhận 2 vCPU; RAM 7,8 GB.
+        </td>
+      </tr>
+      <tr>
+        <td>Hệ điều hành</td>
+        <td>
+          Windows 11 Home Single Language,
+          phiên bản 25H2, 64-bit.
+        </td>
+        <td>
+          Debian GNU/Linux 13 (Trixie),
+          Node.js v22.23.4.
+        </td>
+      </tr>
+      <tr>
+        <td>Cách truy cập từ thiết bị khác</td>
+        <td>
+          Thông thường cần dùng IP máy, mở cổng ứng dụng
+          và cấu hình mạng/tường lửa;
+          chưa thực nghiệm trên máy cá nhân.
+        </td>
+        <td>
+          Truy cập thông qua URL HTTPS do Codespaces
+          cung cấp (Port 3000);
+          đã truy cập API thành công bằng điện thoại.
+        </td>
+      </tr>
+      <tr>
+        <td>Chi phí, đo bằng gì</td>
+        <td>
+          Chi phí phần cứng, điện năng và Internet;
+          chưa đo chi phí cụ thể.
+        </td>
+        <td>
+          Tính theo thời gian sử dụng máy và dung lượng
+          lưu trữ. Billing Usage ghi nhận 0,92 giờ máy
+          2-core ngày 04/11;
+          số tiền phải trả hiện tại là 0 USD.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. Năm đặc tính điện toán đám mây theo NIST</h2>
+
+  <ol>
+    <li>
+      <strong>On-demand Self-service - Tự phục vụ theo yêu cầu:</strong>
+      Sinh viên tự tạo Codespace thông qua GitHub mà không
+      cần quản trị viên cấp phát máy thủ công.
+    </li>
+
+    <li>
+      <strong>Broad Network Access - Truy cập mạng rộng:</strong>
+      API chạy trên Codespaces được truy cập từ máy tính
+      và điện thoại thông qua đường dẫn HTTPS.
+    </li>
+
+    <li>
+      <strong>Resource Pooling - Gộp tài nguyên:</strong>
+      Codespaces cung cấp tài nguyên CPU và RAM từ hạ tầng
+      đám mây dùng chung. Sinh viên sử dụng môi trường
+      được cấp phát mà không cần sở hữu máy chủ vật lý.
+    </li>
+
+    <li>
+      <strong>Rapid Elasticity - Co giãn nhanh:</strong>
+      Khi tạo Codespace, sinh viên lựa chọn cấu hình
+      máy 2-core. Nền tảng hỗ trợ thay đổi tài nguyên
+      theo nhu cầu, tuy nhiên bài thực hành chưa thử
+      tăng hoặc giảm cấu hình máy.
+    </li>
+
+    <li>
+      <strong>Measured Service - Dịch vụ đo lường được:</strong>
+      GitHub Billing Usage thống kê thời gian tính toán,
+      dung lượng lưu trữ và chi phí sử dụng Codespaces.
+      Tại thời điểm kiểm tra, số tiền phải thanh toán
+      là 0 USD.
+    </li>
+  </ol>
+
+  <h2>3. Kết quả thực hành</h2>
+
+  <p>
+    API Hello Cloud đã chạy thành công trên GitHub Codespaces,
+    trả về các thông tin về máy chủ, CPU, RAM, hệ điều hành
+    và thời gian hoạt động. API cũng đã được kiểm tra
+    thành công trên điện thoại thông qua Internet.
+  </p>
+
+  <p>
+    <strong>Repository:</strong>
+    <a href="https://github.com/Pak2k5/notes-api-2324802010260">
+      notes-api-2324802010260
+    </a>
+  </p>
+
+</body>
+</html>
