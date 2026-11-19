@@ -1,3 +1,4 @@
+const notesRouter = require('./routes/notes');
 
 const express = require('express');
 const os = require('os');
@@ -14,6 +15,24 @@ app.get('/', (req, res) => {
     memoryGB: Number((os.totalmem() / 1024 ** 3).toFixed(1)),
     uptimeSec: Math.round(os.uptime()),
     time: new Date().toISOString()
+  });
+});
+
+app.use('/notes', notesRouter);
+
+
+app.use((err, req, res, next) => {
+  if (err.name === 'CastError' ||
+      err.name === 'ValidationError' ||
+      err.code === 'LIMIT_FILE_SIZE') {
+    return res.status(400).json({
+      error: err.message
+    });
+  }
+
+  console.error(err.message);
+  res.status(500).json({
+    error: 'Loi may chu'
   });
 });
 

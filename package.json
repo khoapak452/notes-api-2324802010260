@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Cloud Computing Lab - TDMU_PAK",
   "main": "index.js",
-"scripts": {
-  "start": "node src/server.js",
-  "test": "node --test"
-},
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pak2k5/notes-api-2324802010260.git"
@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/Pak2k5/notes-api-2324802010260#readme",
   "dependencies": {
-    "express": "^5.3.0"
+    "@supabase/supabase-js": "^2.119.1",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "mongoose": "^9.12.2",
+    "multer": "^2.5.0"
   }
 }
