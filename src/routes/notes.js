@@ -2,8 +2,11 @@ const express = require('express');
 const multer = require('multer');
 const Note = require('../models/note');
 const { bucket } = require('../storage');
+const requireAuth = require('../middleware/auth');
 
 const router = express.Router();
+
+router.use(requireAuth);
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -11,9 +14,11 @@ const upload = multer({
 });
 
 router.get('/', async (req, res) => {
-  const filter = req.query.tag
-    ? { tags: String(req.query.tag) }
-    : {};
+  const filter = { owner: req.user.sub };
+
+  if (req.query.tag) {
+    filter.tags = String(req.query.tag);
+  }
 
   const notes = await Note.find(filter)
     .sort({ createdAt: -1 })
@@ -23,7 +28,10 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const note = await Note.findById(req.params.id);
+  const note = await Note.findOne({
+    _id: req.params.id,
+    owner: req.user.sub
+  });
 
   if (!note) {
     return res.status(404).json({
@@ -40,7 +48,8 @@ router.post('/', async (req, res) => {
   const note = await Note.create({
     title,
     content,
-    tags
+    tags,
+    owner: req.user.sub
   });
 
   res.status(201).json(note);
@@ -49,8 +58,11 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const { title, content, tags } = req.body ?? {};
 
-  const note = await Note.findByIdAndUpdate(
-    req.params.id,
+  const note = await Note.findOneAndUpdate(
+    {
+      _id: req.params.id,
+      owner: req.user.sub
+    },
     { title, content, tags },
     { new: true, runValidators: true }
   );
@@ -65,7 +77,10 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-  const note = await Note.findByIdAndDelete(req.params.id);
+  const note = await Note.findOneAndDelete({
+    _id: req.params.id,
+    owner: req.user.sub
+  });
 
   if (!note) {
     return res.status(404).json({
@@ -86,7 +101,10 @@ router.post(
       });
     }
 
-    const note = await Note.findById(req.params.id);
+    const note = await Note.findOne({
+      _id: req.params.id,
+      owner: req.user.sub
+    });
 
     if (!note) {
       return res.status(404).json({
